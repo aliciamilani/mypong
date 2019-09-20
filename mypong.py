@@ -123,7 +123,6 @@ while True:
         os.system("afplay 258020__kodack__arcade-bleep-sound.wav&")
         ball.goto(0,0)
         ball.dx *= -1
-        ball.dx = -3
     
     #colisão com parede direita
     if ball.xcor() > 390:
@@ -133,15 +132,14 @@ while True:
         os.system("afplay 258020__kodack__arcade-bleep-sound.wav&")
         ball.goto(0,0)
         ball.dx *= -1
-        ball.dx = -3
 
 
     # colisão com raquete 1
     if ball.xcor() < -330 and ball.ycor() < paddle_1.ycor() + 50 and ball.ycor() > paddle_1.ycor() - 50:
-        ball.dx *= -1.087
+        ball.dx *= -1
         os.system("afplay bounce.wav&")   
     
     # colisão com raquete 2
     if ball.xcor() > 330 and ball.ycor() < paddle_2.ycor() + 50 and ball.ycor() > paddle_2.ycor() - 50:
-        ball.dx *= -1.087
+        ball.dx *= -1
         os.system("afplay bounce.wav&")
