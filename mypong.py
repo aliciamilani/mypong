@@ -23,7 +23,7 @@ paddle_1.shapesize(stretch_wid=5, stretch_len=1)
 paddle_1.penup()
 paddle_1.goto(-350,0)
 
-#desenhar raquete 2
+# desenhar raquete 2
 paddle_2 = turtle.Turtle()
 paddle_2.speed(0)
 paddle_2.shape("square")
@@ -32,7 +32,7 @@ paddle_2.shapesize(stretch_wid=5, stretch_len=1)
 paddle_2.penup()
 paddle_2.goto(350,0)
 
-#desenhar bola
+# desenhar bola
 ball = turtle.Turtle()
 ball.speed(0)
 ball.shape("square")
@@ -108,7 +108,7 @@ while True:
         os.system("afplay bounce.wav&")
         ball.sety(290)
         ball.dy *= -1
-    
+
     #colisão com parede inferior
     if ball.ycor() < -280:
         os.system("afplay bounce.wav&")
@@ -123,6 +123,7 @@ while True:
         os.system("afplay 258020__kodack__arcade-bleep-sound.wav&")
         ball.goto(0,0)
         ball.dx *= -1
+        ball.dx = -3
     
     #colisão com parede direita
     if ball.xcor() > 390:
@@ -132,14 +133,15 @@ while True:
         os.system("afplay 258020__kodack__arcade-bleep-sound.wav&")
         ball.goto(0,0)
         ball.dx *= -1
+        ball.dx = -3
 
 
     # colisão com raquete 1
     if ball.xcor() < -330 and ball.ycor() < paddle_1.ycor() + 50 and ball.ycor() > paddle_1.ycor() - 50:
-        ball.dx *= -1     
+        ball.dx *= -1.087
         os.system("afplay bounce.wav&")   
     
     # colisão com raquete 2
     if ball.xcor() > 330 and ball.ycor() < paddle_2.ycor() + 50 and ball.ycor() > paddle_2.ycor() - 50:
-        ball.dx *= -1
+        ball.dx *= -1.087
         os.system("afplay bounce.wav&")
