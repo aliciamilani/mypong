@@ -4,8 +4,13 @@
 # fonte Press Start 2P https://www.fontspace.com/codeman38/press-start-2p
 # som pontuação https://freesound.org/people/Kodack/sounds/258020/
 
+# python mypong.py -1 para modo um jogador
+# python mypong.py -2 para modo dois jogadores
 import turtle
 import os
+import sys
+
+player = sys.argv[1]
 
 # desenhar tela
 screen = turtle.Screen()
@@ -39,8 +44,8 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
-ball.dx = 2
-ball.dy = 2
+ball.dx = 0.10
+ball.dy = 0.10
 
 # pontuação
 score_1 = 0
@@ -58,23 +63,22 @@ hud.write("0 : 0", align="center", font=("Press Start 2P", 24, "normal"))
 
 # mover raquete 1
 
+if player != '-1':
+    def paddle_1_up():
+        y = paddle_1.ycor()
+        if y < 250:
+            y += 20
+        else:
+            y = 250
+        paddle_1.sety(y)
 
-def paddle_1_up():
-    y = paddle_1.ycor()
-    if y < 250:
-        y += 20
-    else:
-        y = 250
-    paddle_1.sety(y)
-
-
-def paddle_1_down():
-    y = paddle_1.ycor()
-    if y > -250:
-        y += -20
-    else:
-        y = -250
-    paddle_1.sety(y)
+    def paddle_1_down():
+        y = paddle_1.ycor()
+        if y > -250:
+            y += -20
+        else:
+            y = -250
+        paddle_1.sety(y)
 
 
 def paddle_2_up():
@@ -96,13 +100,19 @@ def paddle_2_down():
 
 # mapeando as teclas
 screen.listen()
-screen.onkeypress(paddle_1_up, "w")
-screen.onkeypress(paddle_1_down, "s")
+
+if player != '-1':
+    screen.onkeypress(paddle_1_up, "w")
+    screen.onkeypress(paddle_1_down, "s")
 screen.onkeypress(paddle_2_up, "Up")
 screen.onkeypress(paddle_2_down, "Down")
 
 while True:
     screen.update()
+
+    # definindo a posição da raquete2 no modo 1 jogador
+    if player == '-1':
+        paddle_1.sety(ball.ycor())
 
     # movimentação da bola
     ball.setx(ball.xcor() + ball.dx)
