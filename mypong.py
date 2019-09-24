@@ -98,7 +98,8 @@ def paddle_2_down():
         y = -250
     paddle_2.sety(y)
 
-#reiniciando o jogo
+
+# reiniciando o jogo
 def restart():
     paddle_2.goto(350, 0)
     paddle_1.goto(-350, 0)
@@ -113,6 +114,7 @@ def restart():
     hud.write("{} : {}".format(score_1, score_2),
               align="center", font=("Press Start 2P", 24, "normal"))
 
+
 # mapeando as teclas
 screen.listen()
 
@@ -121,7 +123,7 @@ if player != '-1':
     screen.onkeypress(paddle_1_down, "s")
 screen.onkeypress(paddle_2_up, "Up")
 screen.onkeypress(paddle_2_down, "Down")
-screen.onkeypress(restart,"space")    
+screen.onkeypress(restart, "space")
 while True:
     screen.update()
 
@@ -170,12 +172,11 @@ while True:
     # colisão com raquete 1
     if ball.xcor() < -330 and ball.ycor() < paddle_1.ycor() + 50 and \
             ball.ycor() > paddle_1.ycor() - 50:
-        ball.dx *= -1.087
+        ball.dx *= -1.095
         os.system("afplay bounce.wav&")
 
     # colisão com raquete 2
     if ball.xcor() > 330 and ball.ycor() < paddle_2.ycor() + 50 and \
             ball.ycor() > paddle_2.ycor() - 50:
-        ball.dx *= -1.087
+        ball.dx *= -1.095
         os.system("afplay bounce.wav&")
-    
