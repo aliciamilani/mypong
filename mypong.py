@@ -9,6 +9,7 @@
 import turtle
 import os
 import sys
+import math
 
 player = sys.argv[1]
 
@@ -17,7 +18,7 @@ screen = turtle.Screen()
 screen.title("My Pong")
 screen.bgcolor("black")
 screen.setup(width=800, height=600)
-screen.tracer(0)
+screen.tracer()
 
 # desenhar raquete 1
 paddle_1 = turtle.Turtle()
@@ -44,8 +45,8 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
-ball.dx = 0.10
-ball.dy = 0.10
+ball.dx = 3 * math.cos(math.radians(45))
+ball.dy = 3 * math.sin(math.radians(45))
 
 # pontuação
 score_1 = 0
@@ -61,8 +62,7 @@ hud.hideturtle()
 hud.goto(0, 260)
 hud.write("0 : 0", align="center", font=("Press Start 2P", 24, "normal"))
 
-# mover raquete 1
-
+# movimentação raquete 1
 if player != '-1':
     def paddle_1_up():
         y = paddle_1.ycor()
@@ -81,6 +81,7 @@ if player != '-1':
         paddle_1.sety(y)
 
 
+# movimentação raquete 2
 def paddle_2_up():
     y = paddle_2.ycor()
     if y < 250:
@@ -99,13 +100,18 @@ def paddle_2_down():
     paddle_2.sety(y)
 
 
+# ângulo de direção da bola
+def direction_angle(angle):
+    ball.dx = 3 * math.cos(math.radians(angle))
+    ball.dy = 3 * math.sin(math.radians(angle))
+
+
 # reiniciando o jogo
 def restart():
     paddle_2.goto(350, 0)
     paddle_1.goto(-350, 0)
     ball.goto(0, 0)
-    ball.dx = 0.10
-    ball.dy = 0.10
+    direction_angle(45)
     hud.clear()
     global score_1
     global score_2
@@ -155,8 +161,7 @@ while True:
                   align="center", font=("Press Start 2P", 24, "normal"))
         os.system("afplay 258020__kodack__arcade-bleep-sound.wav&")
         ball.goto(0, 0)
-        ball.dx *= -1
-        ball.dx = 0.10
+        direction_angle(45)
 
     # colisão com parede direita
     if ball.xcor() > 390:
@@ -166,17 +171,72 @@ while True:
                   align="center", font=("Press Start 2P", 24, "normal"))
         os.system("afplay 258020__kodack__arcade-bleep-sound.wav&")
         ball.goto(0, 0)
+        direction_angle(45)
         ball.dx *= -1
-        ball.dx = 0.10
+        ball.dy *= -1
 
     # colisão com raquete 1
     if ball.xcor() < -330 and ball.ycor() < paddle_1.ycor() + 50 and \
             ball.ycor() > paddle_1.ycor() - 50:
-        ball.dx *= -1.095
+        if ball.ycor() < paddle_1.ycor() + (50/4) * 4 and \
+                ball.ycor() >= paddle_1.ycor() + (50/4) * 3:
+            direction_angle(45)
+        elif ball.ycor() < paddle_1.ycor() + (50/4) * 3 and \
+                ball.ycor() >= paddle_1.ycor() + (50/4) * 2:
+            direction_angle(30)
+        elif ball.ycor() < paddle_1.ycor() + (50/4) * 2 and \
+                ball.ycor() >= paddle_1.ycor() + (50/4) * 1:
+            direction_angle(15)
+        elif ball.ycor() < paddle_1.ycor() + (50/4) * 1 and \
+                ball.ycor() > paddle_1.ycor() + (50/4) * 0:
+            direction_angle(5)
+        elif ball.ycor() < paddle_1.ycor() + (50/4) * 1 and \
+                ball.ycor() == paddle_1.ycor() + (50/4) * 0:
+            direction_angle(0)
+        elif ball.ycor() < paddle_1.ycor() + (50/4) * 0 and \
+                ball.ycor() >= paddle_1.ycor() + (50/4) * -1:
+            direction_angle(355)
+        elif ball.ycor() < paddle_1.ycor() + (50/4) * -1 and \
+                ball.ycor() >= paddle_1.ycor() + (50/4) * -2:
+            direction_angle(345)
+        elif ball.ycor() < paddle_1.ycor() + (50/4) * -2 and \
+                ball.ycor() >= paddle_1.ycor() + (50/4) * -3:
+            direction_angle(330)
+        elif ball.ycor() < paddle_1.ycor() + (50/4) * -3 and \
+                ball.ycor() >= paddle_1.ycor() + (50/4) * -4:
+            direction_angle(315)
+
         os.system("afplay bounce.wav&")
 
     # colisão com raquete 2
     if ball.xcor() > 330 and ball.ycor() < paddle_2.ycor() + 50 and \
             ball.ycor() > paddle_2.ycor() - 50:
-        ball.dx *= -1.095
+        if ball.ycor() < paddle_2.ycor() + (50/4) * 4 and \
+                ball.ycor() >= paddle_2.ycor() + (50/4) * 3:
+            direction_angle(135)
+        elif ball.ycor() < paddle_2.ycor() + (50/4) * 3 and \
+                ball.ycor() >= paddle_2.ycor() + (50/4) * 2:
+            direction_angle(150)
+        elif ball.ycor() < paddle_2.ycor() + (50/4) * 2 and \
+                ball.ycor() >= paddle_2.ycor() + (50/4) * 1:
+            direction_angle(165)
+        elif ball.ycor() < paddle_2.ycor() + (50/4) * 1 and \
+                ball.ycor() > paddle_2.ycor() + (50/4) * 0:
+            direction_angle(175)
+        elif ball.ycor() < paddle_2.ycor() + (50/4) * 1 and \
+                ball.ycor() == paddle_2.ycor() + (50/4) * 0:
+            direction_angle(180)
+        elif ball.ycor() < paddle_2.ycor() + (50/4) * 0 and \
+                ball.ycor() >= paddle_2.ycor() + (50/4) * -1:
+            direction_angle(185)
+        elif ball.ycor() < paddle_2.ycor() + (50/4) * -1 and \
+                ball.ycor() >= paddle_2.ycor() + (50/4) * -2:
+            direction_angle(195)
+        elif ball.ycor() < paddle_2.ycor() + (50/4) * -2 and \
+                ball.ycor() >= paddle_2.ycor() + (50/4) * -3:
+            direction_angle(210)
+        elif ball.ycor() < paddle_2.ycor() + (50/4) * -3 and \
+                ball.ycor() >= paddle_2.ycor() + (50/4) * -4:
+            direction_angle(225)
+
         os.system("afplay bounce.wav&")
