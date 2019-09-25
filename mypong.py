@@ -159,13 +159,13 @@ while True:
 
     # colisão com parede superior
     if ball.ycor() > 290:
-        os.system("afplay bounce.wav&")
+        os.system("aplay bounce.wav&")
         ball.sety(290)
         ball.dy *= -1
 
     # colisão com parede inferior
     if ball.ycor() < -280:
-        os.system("afplay bounce.wav&")
+        os.system("aplay bounce.wav&")
         ball.sety(-280)
         ball.dy *= -1
 
@@ -176,7 +176,7 @@ while True:
         hud.clear()
         hud.write("{} : {}".format(score_1, score_2),
                   align="center", font=("Press Start 2P", 24, "normal"))
-        os.system("afplay 258020__kodack__arcade-bleep-sound.wav&")
+        os.system("aplay 258020__kodack__arcade-bleep-sound.wav&")
         ball.goto(0, 0)
         direction_angle(45)
 
@@ -187,7 +187,7 @@ while True:
         hud.clear()
         hud.write("{} : {}".format(score_1, score_2),
                   align="center", font=("Press Start 2P", 24, "normal"))
-        os.system("afplay 258020__kodack__arcade-bleep-sound.wav&")
+        os.system("aplay 258020__kodack__arcade-bleep-sound.wav&")
         ball.goto(0, 0)
         direction_angle(45)
         ball.dx *= -1
@@ -224,7 +224,7 @@ while True:
                 ball.ycor() >= paddle_1.ycor() + (50/4) * -4:
             direction_angle(315)
         vel += 1
-        os.system("afplay bounce.wav&")
+        os.system("aplay bounce.wav&")
 
     # colisão com raquete 2
     if ball.xcor() > 330 and ball.ycor() < paddle_2.ycor() + 50 and \
@@ -257,7 +257,7 @@ while True:
                 ball.ycor() >= paddle_2.ycor() + (50/4) * -4:
             direction_angle(225)
         vel += 1
-        os.system("afplay bounce.wav&")
+        os.system("aplay bounce.wav&")
 
     # condição de vitória
     if score_1 == 5 or score_2 == 5:
