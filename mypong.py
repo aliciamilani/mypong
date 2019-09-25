@@ -12,6 +12,11 @@ import sys
 import math
 
 player = sys.argv[1]
+alt_paddle = 5
+larg_paddle = 1
+
+# tamanho(altura) de um segmento da raquete
+TAM_UM_SEG = (alt_paddle*10)/4
 
 # desenhar tela
 screen = turtle.Screen()
@@ -25,7 +30,7 @@ paddle_1 = turtle.Turtle()
 paddle_1.speed(0)
 paddle_1.shape("square")
 paddle_1.color("white")
-paddle_1.shapesize(stretch_wid=5, stretch_len=1)
+paddle_1.shapesize(stretch_wid=alt_paddle, stretch_len=larg_paddle)
 paddle_1.penup()
 paddle_1.goto(-350, 0)
 
@@ -34,7 +39,7 @@ paddle_2 = turtle.Turtle()
 paddle_2.speed(0)
 paddle_2.shape("square")
 paddle_2.color("white")
-paddle_2.shapesize(stretch_wid=5, stretch_len=1)
+paddle_2.shapesize(stretch_wid=alt_paddle, stretch_len=larg_paddle)
 paddle_2.penup()
 paddle_2.goto(350, 0)
 
@@ -196,32 +201,32 @@ while True:
     # colisão com raquete 1
     if ball.xcor() < -330 and ball.ycor() < paddle_1.ycor() + 50 and \
             ball.ycor() > paddle_1.ycor() - 50:
-        if ball.ycor() < paddle_1.ycor() + (50/4) * 4 and \
-                ball.ycor() >= paddle_1.ycor() + (50/4) * 3:
+        if ball.ycor() < paddle_1.ycor() + TAM_UM_SEG * 4 and \
+                ball.ycor() >= paddle_1.ycor() + TAM_UM_SEG * 3:
             direction_angle(45)
-        elif ball.ycor() < paddle_1.ycor() + (50/4) * 3 and \
-                ball.ycor() >= paddle_1.ycor() + (50/4) * 2:
+        elif ball.ycor() < paddle_1.ycor() + TAM_UM_SEG * 3 and \
+                ball.ycor() >= paddle_1.ycor() + TAM_UM_SEG * 2:
             direction_angle(30)
-        elif ball.ycor() < paddle_1.ycor() + (50/4) * 2 and \
-                ball.ycor() >= paddle_1.ycor() + (50/4) * 1:
+        elif ball.ycor() < paddle_1.ycor() + TAM_UM_SEG * 2 and \
+                ball.ycor() >= paddle_1.ycor() + TAM_UM_SEG * 1:
             direction_angle(15)
-        elif ball.ycor() < paddle_1.ycor() + (50/4) * 1 and \
-                ball.ycor() > paddle_1.ycor() + (50/4) * 0:
+        elif ball.ycor() < paddle_1.ycor() + TAM_UM_SEG * 1 and \
+                ball.ycor() > paddle_1.ycor() + TAM_UM_SEG * 0:
             direction_angle(5)
-        elif ball.ycor() < paddle_1.ycor() + (50/4) * 1 and \
-                ball.ycor() == paddle_1.ycor() + (50/4) * 0:
+        elif ball.ycor() < paddle_1.ycor() + TAM_UM_SEG * 1 and \
+                ball.ycor() == paddle_1.ycor() + TAM_UM_SEG * 0:
             direction_angle(0)
-        elif ball.ycor() < paddle_1.ycor() + (50/4) * 0 and \
-                ball.ycor() >= paddle_1.ycor() + (50/4) * -1:
+        elif ball.ycor() < paddle_1.ycor() + TAM_UM_SEG * 0 and \
+                ball.ycor() >= paddle_1.ycor() + TAM_UM_SEG * -1:
             direction_angle(355)
-        elif ball.ycor() < paddle_1.ycor() + (50/4) * -1 and \
-                ball.ycor() >= paddle_1.ycor() + (50/4) * -2:
+        elif ball.ycor() < paddle_1.ycor() + TAM_UM_SEG * -1 and \
+                ball.ycor() >= paddle_1.ycor() + TAM_UM_SEG * -2:
             direction_angle(345)
-        elif ball.ycor() < paddle_1.ycor() + (50/4) * -2 and \
-                ball.ycor() >= paddle_1.ycor() + (50/4) * -3:
+        elif ball.ycor() < paddle_1.ycor() + TAM_UM_SEG * -2 and \
+                ball.ycor() >= paddle_1.ycor() + TAM_UM_SEG * -3:
             direction_angle(330)
-        elif ball.ycor() < paddle_1.ycor() + (50/4) * -3 and \
-                ball.ycor() >= paddle_1.ycor() + (50/4) * -4:
+        elif ball.ycor() < paddle_1.ycor() + TAM_UM_SEG * -3 and \
+                ball.ycor() >= paddle_1.ycor() + TAM_UM_SEG * -4:
             direction_angle(315)
         vel += 1
         os.system("aplay bounce.wav&")
@@ -229,32 +234,32 @@ while True:
     # colisão com raquete 2
     if ball.xcor() > 330 and ball.ycor() < paddle_2.ycor() + 50 and \
             ball.ycor() > paddle_2.ycor() - 50:
-        if ball.ycor() < paddle_2.ycor() + (50/4) * 4 and \
-                ball.ycor() >= paddle_2.ycor() + (50/4) * 3:
+        if ball.ycor() < paddle_2.ycor() + TAM_UM_SEG * 4 and \
+                ball.ycor() >= paddle_2.ycor() + TAM_UM_SEG * 3:
             direction_angle(135)
-        elif ball.ycor() < paddle_2.ycor() + (50/4) * 3 and \
-                ball.ycor() >= paddle_2.ycor() + (50/4) * 2:
+        elif ball.ycor() < paddle_2.ycor() + TAM_UM_SEG * 3 and \
+                ball.ycor() >= paddle_2.ycor() + TAM_UM_SEG * 2:
             direction_angle(150)
-        elif ball.ycor() < paddle_2.ycor() + (50/4) * 2 and \
-                ball.ycor() >= paddle_2.ycor() + (50/4) * 1:
+        elif ball.ycor() < paddle_2.ycor() + TAM_UM_SEG * 2 and \
+                ball.ycor() >= paddle_2.ycor() + TAM_UM_SEG * 1:
             direction_angle(165)
-        elif ball.ycor() < paddle_2.ycor() + (50/4) * 1 and \
-                ball.ycor() > paddle_2.ycor() + (50/4) * 0:
+        elif ball.ycor() < paddle_2.ycor() + TAM_UM_SEG * 1 and \
+                ball.ycor() > paddle_2.ycor() + TAM_UM_SEG * 0:
             direction_angle(175)
-        elif ball.ycor() < paddle_2.ycor() + (50/4) * 1 and \
-                ball.ycor() == paddle_2.ycor() + (50/4) * 0:
+        elif ball.ycor() < paddle_2.ycor() + TAM_UM_SEG * 1 and \
+                ball.ycor() == paddle_2.ycor() + TAM_UM_SEG * 0:
             direction_angle(180)
-        elif ball.ycor() < paddle_2.ycor() + (50/4) * 0 and \
-                ball.ycor() >= paddle_2.ycor() + (50/4) * -1:
+        elif ball.ycor() < paddle_2.ycor() + TAM_UM_SEG * 0 and \
+                ball.ycor() >= paddle_2.ycor() + TAM_UM_SEG * -1:
             direction_angle(185)
-        elif ball.ycor() < paddle_2.ycor() + (50/4) * -1 and \
-                ball.ycor() >= paddle_2.ycor() + (50/4) * -2:
+        elif ball.ycor() < paddle_2.ycor() + TAM_UM_SEG * -1 and \
+                ball.ycor() >= paddle_2.ycor() + TAM_UM_SEG * -2:
             direction_angle(195)
-        elif ball.ycor() < paddle_2.ycor() + (50/4) * -2 and \
-                ball.ycor() >= paddle_2.ycor() + (50/4) * -3:
+        elif ball.ycor() < paddle_2.ycor() + TAM_UM_SEG * -2 and \
+                ball.ycor() >= paddle_2.ycor() + TAM_UM_SEG * -3:
             direction_angle(210)
-        elif ball.ycor() < paddle_2.ycor() + (50/4) * -3 and \
-                ball.ycor() >= paddle_2.ycor() + (50/4) * -4:
+        elif ball.ycor() < paddle_2.ycor() + TAM_UM_SEG * -3 and \
+                ball.ycor() >= paddle_2.ycor() + TAM_UM_SEG * -4:
             direction_angle(225)
         vel += 1
         os.system("aplay bounce.wav&")
