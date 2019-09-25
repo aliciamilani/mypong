@@ -4,7 +4,7 @@
 # fonte Press Start 2P https://www.fontspace.com/codeman38/press-start-2p
 # som pontuação https://freesound.org/people/Kodack/sounds/258020/
 
-Contributors:
+Contributors:  
 Anderson De Paula Andrade Medeiros - andersonandrade.30@gmail.com  
 Anna Alícia Milani Vasconcelos - aliciamilani93@gmail.com  
 Bruno França do Prado - bruno_french@outlook.com  
