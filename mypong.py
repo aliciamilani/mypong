@@ -45,8 +45,9 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
-ball.dx = 3 * math.cos(math.radians(45))
-ball.dy = 3 * math.sin(math.radians(45))
+vel = 4
+ball.dx = vel * math.cos(math.radians(45))
+ball.dy = vel * math.sin(math.radians(45))
 
 # pontuação
 score_1 = 0
@@ -102,8 +103,8 @@ def paddle_2_down():
 
 # ângulo de direção da bola
 def direction_angle(angle):
-    ball.dx = 3 * math.cos(math.radians(angle))
-    ball.dy = 3 * math.sin(math.radians(angle))
+    ball.dx = vel * math.cos(math.radians(angle))
+    ball.dy = vel * math.sin(math.radians(angle))
 
 
 # reiniciando o jogo
@@ -111,6 +112,10 @@ def restart():
     paddle_2.goto(350, 0)
     paddle_1.goto(-350, 0)
     ball.goto(0, 0)
+    global vel
+    vel = 4
+    ball.dx = vel * math.cos(math.radians(45))
+    ball.dy = vel * math.sin(math.radians(45))
     direction_angle(45)
     hud.clear()
     global score_1
@@ -156,6 +161,7 @@ while True:
     # colisão com parede esquerda
     if ball.xcor() < -390:
         score_2 += 1
+        vel = 4
         hud.clear()
         hud.write("{} : {}".format(score_1, score_2),
                   align="center", font=("Press Start 2P", 24, "normal"))
@@ -166,6 +172,7 @@ while True:
     # colisão com parede direita
     if ball.xcor() > 390:
         score_1 += 1
+        vel = 4
         hud.clear()
         hud.write("{} : {}".format(score_1, score_2),
                   align="center", font=("Press Start 2P", 24, "normal"))
@@ -205,7 +212,7 @@ while True:
         elif ball.ycor() < paddle_1.ycor() + (50/4) * -3 and \
                 ball.ycor() >= paddle_1.ycor() + (50/4) * -4:
             direction_angle(315)
-
+        vel += 1
         os.system("afplay bounce.wav&")
 
     # colisão com raquete 2
@@ -238,5 +245,5 @@ while True:
         elif ball.ycor() < paddle_2.ycor() + (50/4) * -3 and \
                 ball.ycor() >= paddle_2.ycor() + (50/4) * -4:
             direction_angle(225)
-
+        vel += 1
         os.system("afplay bounce.wav&")
