@@ -5,8 +5,8 @@
 # som pontuação https://freesound.org/people/Kodack/sounds/258020/
 
 Contributors:
-Anderson De Paula Andrade Medeiros - andersonandrade.30@gmail.com
-Anna Alícia Milani Vasconcelos - aliciamilani93@gmail.com
-Bruno França do Prado - bruno_french@outlook.com
-Caio Andrade Mota - cam.snf19@uea.edu.br
+Anderson De Paula Andrade Medeiros - andersonandrade.30@gmail.com  
+Anna Alícia Milani Vasconcelos - aliciamilani93@gmail.com  
+Bruno França do Prado - bruno_french@outlook.com  
+Caio Andrade Mota - cam.snf19@uea.edu.br  
 Fernanda Pinto Lopes - fpl.snf19@uea.edu.br
