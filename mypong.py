@@ -53,6 +53,16 @@ ball.dy = vel * math.sin(math.radians(45))
 score_1 = 0
 score_2 = 0
 
+# fonte de vitória
+win = turtle.Turtle()
+win.speed(0)
+win.shape("square")
+win.color("white")
+win.shapesize(stretch_wid=10, stretch_len=5)
+win.penup()
+win.hideturtle()
+win.goto(0, 0)
+
 # head-up display da pontuação
 hud = turtle.Turtle()
 hud.speed(0)
@@ -135,6 +145,7 @@ if player != '-1':
 screen.onkeypress(paddle_2_up, "Up")
 screen.onkeypress(paddle_2_down, "Down")
 screen.onkeypress(restart, "space")
+
 while True:
     screen.update()
 
@@ -247,3 +258,17 @@ while True:
             direction_angle(225)
         vel += 1
         os.system("afplay bounce.wav&")
+
+    # condição de vitória
+    if score_1 == 5 or score_2 == 5:
+        winner = 'player 1' if score_1 > score_2 else 'player 2'
+        score_1 = score_2 = 0
+        win.write("Victory {}".format(winner), align="center",
+                  font=("Press Start 2P", 24, "normal"))
+        screen.textinput("Victory {}".format(winner),
+                         "Press [ENTER] to restart")
+        win.clear()
+        hud.clear()
+        hud.write("{} : {}".format(score_1, score_2), align="center", font=(
+            "Press Start 2P", 24, "normal"))
+        screen.listen()
